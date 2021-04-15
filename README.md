@@ -1,6 +1,6 @@
 # Accelerator Mulesoft Lightning Web Component
 
-This Lightning Web Component(LWC) can be used as a frontend for displaying data from APIs delivered with Mule. This LWC is a generic component that can be reused in different use cases. The component displays the fields returned by the API.
+This Lightning Web Component (LWC) can be used as a front end for displaying data from APIs delivered with Mule. This LWC is a generic component that can be reused in different use cases. The component displays the fields returned by the API.
 
 ## Available components
 1. Related Info View (Single record) - to display a table of key-value pairs. Ideally, useful for displaying data about a single object
