@@ -27,9 +27,16 @@ export default class MuleSoftQueryRecord extends LightningElement {
     externalFieldName = ['Id']; // default value for query so wiredRecord doesn't error initially
 
     async executeCallout(externalField){
+        if(externalField == null || externalField == ''){
+            console.log('External ID does not exist - cannot call API');
+            this.isLoaded = false;
+            return;
+        }
+
         console.log('Beginning fetch function...');
         if(this.muleURIBase == null || this.muleURIBase == ''){
             console.log('No URI detected, abandoning callout');
+            this.isLoaded = false;
             return;
         }
         this.data = await fetchDataHelper(this.muleURIBase, externalField, this.muleURIExtended);
