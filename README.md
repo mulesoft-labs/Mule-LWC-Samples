@@ -6,6 +6,36 @@ This Lightning Web Component (LWC) can be used as a front end for displaying dat
 1. Related Info View (Single record) - to display a table of key-value pairs. Ideally, useful for displaying data about a single object
 2. Related table View (Multi/Child records) - to display a table of related records. This is best for displaying a list of related records
 
+### Mule App Formatting Notes
+The format of the input data is critical to the LWC correctly rendering. Each component's format is as follows:<br/>
+**Related Info View:**<br/>
+This needs to return a 1 level deep json object.  Use format below<br/>
+```json
+{
+	"Key-1": "Value 1",
+	"Key-2": "Value 2"
+}
+```
+**Related Table View:**<br/>
+This needs to return an array of 1 level deep json objects.  The table will use the keys as the column headers, as such it is critical keys are consistent through the array.  Use format below<br/>
+```json
+[
+	{
+		"Key-1": "Value 1",
+		"Key-2": "Value 2"
+	},
+	{
+		"Key-1": "Value 3",
+		"Key-2": "Value 4"
+	},
+	{
+		"Key-1": "Value 5",
+		"Key-2": "Value 6"
+	}
+]
+```
+<br/><br/><br/>
+
 ## Configuration
 
 The following example shows how to fetch orders history using Salesforce Experience API endpoint and display in Salesforce using this Lightning Web Component
