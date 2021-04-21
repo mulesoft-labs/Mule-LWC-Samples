@@ -3,6 +3,9 @@
         <div if:true={isLoaded}>
             <lightning-spinner alternative-text="Loading..."></lightning-spinner>
         </div>
+        <div if:false={hasId}>
+            <ui:message title="NoData" severity="confirm" closable="false">No matches found</ui:message>
+        </div>
         <div >
             <lightning-datatable 
                     column-widths-mode="auto"

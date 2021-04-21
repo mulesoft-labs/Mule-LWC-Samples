@@ -9,6 +9,7 @@ export default class MuleRelatedRecordsTable extends LightningElement {
     @track data = []; // store data returned from callout to display
     @track columns; // variable to dynamically store column headers
     @track isLoaded = true; // spinner boolean
+    @track hasId = true; // tracking for Record ID
 
     @api cardTitle; // variable storing the title on the card
     @api muleURIBase; // mulesoft endpoint URI base
@@ -21,7 +22,14 @@ export default class MuleRelatedRecordsTable extends LightningElement {
 
     // async function to execute callout to mule endpoint
     async executeCallout(externalField){
+        if(externalField == null || externalField == ''){
+            console.log('External ID does not exist - cannot call API');
+            this.isLoaded = false;
+            return;
+        }
+
         if(this.muleURIBase == null || this.muleURIBase == ''){
+            this.isLoaded = false;
             return;
         }
         let result = await fetchDataHelper(this.muleURIBase, externalField, this.muleURIExtended);
@@ -49,6 +57,12 @@ export default class MuleRelatedRecordsTable extends LightningElement {
                 return data.fields[key].value;
             })];
             this.error = undefined;
+
+            if (this.record[0] == null){
+                console.log('No Record ID')
+                this.hasId = false;
+            }
+
             this.executeCallout(this.record[0]);
         }
         else if (error) {
